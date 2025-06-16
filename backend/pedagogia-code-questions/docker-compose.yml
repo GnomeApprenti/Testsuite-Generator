@@ -1,0 +1,24 @@
+
+services:
+  llama:
+    image: vllm/vllm-openai:latest
+    environment:
+      - HUGGING_FACE_HUB_TOKEN=${HUGGING_FACE_HUB_TOKEN}
+    ports:
+      - "8000:8000"
+    command: --model meta-llama/Llama-3.2-3B-Instruct
+    ipc: host
+
+  embedding:
+    image: vllm/vllm-openai:latest
+    environment:
+      - HUGGING_FACE_HUB_TOKEN=${HUGGING_FACE_HUB_TOKEN}
+    ports:
+      - "8001:8000"
+    command: --model intfloat/multilingual-e5-large-instruct --task embedding
+    ipc: host
+
+  chroma:
+    image: chromadb/chroma
+    ports:
+      - "8008:8000"

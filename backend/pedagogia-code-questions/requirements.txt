@@ -1,0 +1,4 @@
+pydantic
+networkx
+openai
+python_dotenv
